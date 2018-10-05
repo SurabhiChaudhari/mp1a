@@ -1,6 +1,15 @@
 <?php
-/**Created by PhpStrom...*/
-echo'test123';
- echo 'surabhi Chaudhari : ucid: sc2263';
- echo 'fix';
- echo 'hi,hello';
+main::start();
+class main {
+public static function start()
+{
+    //reading the csv file and putting it in an array
+    $file = fopen("example.csv", "r");
+
+    while (!feof($file)) {
+        print_r(fgetcsv($file));
+    }
+
+    fclose($file);
+}
+}
