@@ -7,7 +7,8 @@ class main {
 public static function start($filename)
 {
     $records=csv::getRecords($filename);
-    print_r($records);
+    $record = recordFactory::create();
+    print_r($record);
 }
 }
 
@@ -27,4 +28,17 @@ static public function getRecords($filename)    {
 
 }
 
+}
+
+class record{
+
+}
+
+class recordFactory
+{
+    public static function create(Array $array = null)
+    {
+        $record = new record();
+        return $record;
+        }
 }
