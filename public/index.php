@@ -8,7 +8,7 @@ public static function start($filename)
 {
     $records=csv::getRecords($filename);
     //$record = recordFactory::create();
-    print_r($records);
+   // print_r($records);
 }
 }
 
@@ -19,7 +19,7 @@ static public function getRecords($filename)    {
 
     while (!feof($file)) {
         $record[]=fgetcsv($file);
-        $records[]= recordFactory::create();
+        $records[]= recordFactory::create($record);
     }
 
     fclose($file);
@@ -31,14 +31,23 @@ static public function getRecords($filename)    {
 }
 
 class record{
+//creation of constructor
+public function __construct(Array $record=null){
+   //print_r($record);
+    $this->createProperty();
+    print_r($this);
+}
 
+public function createProperty($name='first',$value='Keith'){
+    $this->{$name}=$value;
+}
 }
 
 class recordFactory
 {
     public static function create(Array $array = null)
     {
-        $record = new record();
+        $record = new record($array);
         return $record;
         }
 }
