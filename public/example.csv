@@ -1,10 +1,3 @@
-Name,Class,Dorm,Room,GPA
-Sally Whittaker,2018,McCarren House,312,3.75
-Belinda Jameson,2017,Cushing House,148,3.52
-Jeff Smith,2018,Prescott House,17-D,3.20
-Sandy Allen,2019,Oliver House,108,3.48
-Pancy Patterson,2018,Swift House,312,3.90
-Maria Gibbon,2019,Blue waters House,210,3.56
-Liam Hemsworth,2018,Detroit House,18-C,3.45
-Tony Lawrence,2019,Daisy House,129,3.20
-Michelle Cyrus,2018,Cassio House,300,3.70
+first,last,ucid
+keith,Williams,kwilliam
+smith,Joe,jsmith
