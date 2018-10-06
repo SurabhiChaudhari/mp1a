@@ -13,8 +13,9 @@ class main
     static public function start($filename)
     {
         $records = csv::getRecords($filename);
-        $table = html_table::open_htmlTable($records);
-        //$table = html::generateTable($records);
+        //$table = html_table::open_htmlTable($records);
+        $table = html::generateTable($records);
+        echo $table;
     }
 }
 
@@ -86,6 +87,53 @@ class html_header{
     }
 }
 
+class html {
+    public static function generateTable($records) {
+        $html = '<html>';
+        $html .= html_header::getHtmlHeader();
+        $html .= html_body::open_HtmlBody();
+        //Start Table
+        $html .= html_table::open_htmlTable();
+// Header Row
+//    $html .= '<tr>';
+        $count =0;
+        foreach ($records as $record){
+            if($count == 0){
+                $html .= html_tableHead::open_TableHead();
+                $html .= create_table_Rows::open_tableRow();
+                $array = $record->returnArray();
+                $fields = array_keys($array);
+                $values = array_values($array);
+//            print_r($fields);
+//            print_r($values);
+                foreach($fields as  $value) {
+                    $html .= create_table_Header::createHeader($value);
+                }
+//            $html .= '</tr>';
+                $html .= html_tableHead::close_TableHead();
+//            $html .= create_table_Rows::open_tableRow();
+                foreach($values as  $value2){
+                    $html .= tableData::printTabledata($value2);
+                }
+                $html .= create_table_Rows::close_tableRow();
+            } else {
+                $array = $record->returnArray();
+                $values = array_values($array);
+                $html .= create_table_Rows::open_tableRow();
+                foreach($values as  $value2){
+                    $html .= tableData::printTabledata($value2);
+                }
+                $html .= create_table_Rows::close_tableRow();
+            }
+            $count++;
+        }
+        //Finish table and return
+        $html .= html_table::close_htmlTable();
+        $html .= html_body::close_HtmlBody() ;
+        $html .= '</html>';
+        return $html;
+    }
+}
 class csv {
 
     public static function getRecords($filename){
@@ -123,7 +171,7 @@ class record
         foreach ($record as $property => $value) {
             $this->createProperty($property, $value);
         }
-        print_r($this);
+        //print_r($this);
     }
 
     public function returnArray(){
