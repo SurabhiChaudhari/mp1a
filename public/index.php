@@ -7,8 +7,8 @@ class main {
 public static function start($filename)
 {
     $records=csv::getRecords($filename);
-    $record = recordFactory::create();
-    print_r($record);
+    //$record = recordFactory::create();
+    print_r($records);
 }
 }
 
@@ -19,7 +19,7 @@ static public function getRecords($filename)    {
 
     while (!feof($file)) {
         $record[]=fgetcsv($file);
-        $records[]= $record;
+        $records[]= recordFactory::create();
     }
 
     fclose($file);
