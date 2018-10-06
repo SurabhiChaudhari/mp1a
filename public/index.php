@@ -13,6 +13,17 @@ class main
     static public function start($filename)
     {
         $records = csv::getRecords($filename);
+        $table = html_table::open_htmlTable($records);
+        //$table = html::generateTable($records);
+    }
+}
+// Create HTML TABLE
+class html_table{
+    public static function open_htmlTable(){
+        return '<table class="table table-bordered">';
+    }
+    public static function close_htmlTable(){
+        return '</table>';
 
 
     }
@@ -22,13 +33,10 @@ class csv {
 
     public static function getRecords($filename){
 
-        $file = fopen($filename, "r");
-
+        $file = fopen($filename,"r");
         $fieldNames = array();
         $count = 0;
-
         while(! feof($file)){
-
             $record = fgetcsv($file);
 
             if($count==0){
@@ -48,24 +56,34 @@ class csv {
     }
 }
 
-class record{
-    public function __construct(Array $fieldNames =null, Array $values = null)
+class record
+{
+    public function __construct(Array $fieldNames = null, Array $values = null)
     {
-        $record = array_combine($fieldNames,$values);
-        foreach ($record as $property => $value){
-            $this->createProperty($property,$value);
+        //print_r($record);
+
+        $record = array_combine($fieldNames, $values);
+        foreach ($record as $property => $value) {
+            $this->createProperty($property, $value);
         }
         print_r($this);
     }
 
+    public function returnArray(){
+        $array = (array) $this;
+        return $array;
+    }
 
 
-
-    public function createProperty($name = "FirstName", $value = "Surabhi"){
+    public function createProperty($name = "FirstName", $value = "Surabhi")
+    {
 
         $this->{$name} = $value;
     }
+
 }
+
+
 
 
 
