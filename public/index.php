@@ -50,9 +50,11 @@ class csv {
 
 class record{
 
-    public function __construct($record =null)
+    public function __construct(Array $fieldNames = null,$values = null)
     {
-        print_r($record);
+
+        print_r($fieldNames);
+        print_r($values);
         $this->createProperty();
 
     }
@@ -69,12 +71,12 @@ class record{
 class recordFactory
 {
 
-    public static function create(Array $fieldNames = null, Array $record = null)
+    public static function create(Array $fieldNames = null, Array $values = null)
     {
 
-        print_r($fieldNames);
-        print_r($record);
-        // $record = new record($array);
+        //print_r($fieldNames);
+       // print_r($record);
+        $record = new record($fieldNames,$values);
 
         return $record;
 
